@@ -6,6 +6,13 @@
 - MySQL como banco de dados.
 - Python com Scikit-Learn e Streamlit para os modelos de IA e interface de visualização.
 
+Vamos adicionar os seguintes módulos à estrutura do projeto:
+
+Modelos de Dados para agendamentos e pagamentos.
+Repositórios e Serviços para manipulação dos dados de agendamento e pagamento.
+Controladores para gerenciar as rotas de serviços, agendamentos e pagamentos.
+Páginas Thymeleaf para interface do usuário.
+
 Preparação do Ambiente de Desenvolvimento
 Instalação do Java Development Kit (JDK):
 
