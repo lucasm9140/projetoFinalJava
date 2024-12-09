@@ -1,7 +1,7 @@
 # Visão Geral do Projeto
-- Objetivo: Criar uma aplicação web em Java que permita gerenciar serviços de uma estética automotiva, com funcionalidades de previsão de falência e análise de gastos/ganhos futuros utilizando modelos de IA.
+- Objetivo: Criar uma aplicação web em Java que permita gerenciar serviços de uma estética automotiva, com funcionalidades de previsão de falência e análise de gastos/ganhos futuros utilizando modelos de IA criados em Python.
 - Tecnologias:
-- Java com Spring Boot para a aplicação web.
+- Java com Spring Boot para a aplicação web e segurança de autenticação do login.
 - HTML, CSS E JAVASCRIPT - caso quiser usar, Thymeleaf para o front-end da aplicação web.
 - MySQL como banco de dados.
 - Python com Scikit-Learn e Streamlit para os modelos de IA e interface de visualização.
