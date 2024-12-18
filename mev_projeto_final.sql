@@ -69,7 +69,7 @@ CREATE TABLE vendas (
     cliente_id INT NOT NULL,
     data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     valor_total DECIMAL(10, 2) NOT NULL,
-    status ENUM('pendente', 'pago', 'cancelado') DEFAULT 'pendente',
+    status ENUM('pendente', 'pago') DEFAULT 'pendente',
     FOREIGN KEY (cliente_id) REFERENCES usuarios(id)
 );
 
@@ -141,3 +141,6 @@ CREATE TABLE logs (
     data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
+
+ALTER TABLE vendas ADD cidade_satelite VARCHAR(80);
+

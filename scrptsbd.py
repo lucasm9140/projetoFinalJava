@@ -19,7 +19,7 @@ def conectar_db():
 
 # Funções para popular dados
 
-def inserir_usuarios(qtd_clientes=56):
+def inserir_usuarios(qtd_clientes=76):
     """
     Insere usuários no banco de dados com limite de tipos específicos.
     """
@@ -105,13 +105,13 @@ def inserir_produtos():
     cursor.close()
     connection.close()
 
-def inserir_agendamentos(qtd=50):
+def inserir_agendamentos(qtd=60):
     print("Inserindo agendamentos...")
     connection = conectar_db()
     cursor = connection.cursor()
 
     for _ in range(qtd):
-        cliente_id = random.randint(1, 30)
+        cliente_id = random.randint(1, 60)
         funcionario_id = random.randint(4, 7)
         servico_id = random.randint(1, 5)
         data_agendamento = datetime.now() - timedelta(days=random.randint(1, 365))
@@ -127,7 +127,7 @@ def inserir_agendamentos(qtd=50):
     cursor.close()
     connection.close()
 
-def inserir_financeiro(qtd_registros=50):
+def inserir_financeiro(qtd_registros=80):
     if not isinstance(qtd_registros, int) or qtd_registros <= 0:
         raise ValueError("O parâmetro 'qtd_registros' deve ser um número inteiro positivo.")
 
@@ -155,7 +155,7 @@ def inserir_financeiro(qtd_registros=50):
     print("Registros financeiros inseridos com sucesso!")
 
 
-def inserir_gastos_pessoais(qtd_registros=50):
+def inserir_gastos_pessoais(qtd_registros=80):
     """
     Insere registros de gastos pessoais simulados.
     """
@@ -182,19 +182,29 @@ def inserir_gastos_pessoais(qtd_registros=50):
     connection.close()
     print("Registros de gastos pessoais inseridos com sucesso!")
 
+# Lista das cidades satélites de Brasília
+cidades_satelites = [
+        "Ceilândia", "Taguatinga", "Samambaia", "Planaltina", "Águas Claras",
+        "Sobradinho", "Gama", "Recanto das Emas", "Santa Maria", "São Sebastião",
+        "Guará", "Brazlândia", "Paranoá", "Riacho Fundo", "Candangolândia",
+        "Vicente Pires", "Cruzeiro", "Lago Sul", "Lago Norte", "Varjão"
+]
 
-
-def inserir_vendas(qtd=30):
+def inserir_vendas(qtd=80):
     print("Inserindo vendas...")
     connection = conectar_db()
     cursor = connection.cursor()
 
     for _ in range(qtd):
-        cliente_id = random.randint(1, 30)
+        cliente_id = random.randint(1, 70)
         valor_total = round(random.uniform(100, 2000), 2)
-        status = random.choice(["pendente", "pago", "cancelado"])
-        query = "INSERT INTO vendas (cliente_id, valor_total, status) VALUES (%s, %s, %s)"
-        cursor.execute(query, (cliente_id, valor_total, status))
+        status = random.choice(["pendente", "pago"])
+        cidade_satelite = random.choice(cidades_satelites)  # Corrigido aqui
+        query = """
+        INSERT INTO vendas (cliente_id, valor_total, status, cidade_satelite)
+        VALUES (%s, %s, %s, %s)
+        """
+        cursor.execute(query, (cliente_id, valor_total, status, cidade_satelite))
 
     connection.commit()
     cursor.close()
@@ -206,7 +216,7 @@ def inserir_itens_venda(qtd=50):
     cursor = connection.cursor()
 
     for _ in range(qtd):
-        venda_id = random.randint(1, 30)
+        venda_id = random.randint(1, 70)
         produto_id = random.randint(1, 5)
         quantidade = random.randint(1, 5)
         preco_unitario = round(random.uniform(10, 500), 2)
@@ -220,13 +230,13 @@ def inserir_itens_venda(qtd=50):
     cursor.close()
     connection.close()
 
-def inserir_logs(qtd=20):
+def inserir_logs(qtd=70):
     print("Inserindo logs...")
     connection = conectar_db()
     cursor = connection.cursor()
 
     for _ in range(qtd):
-        usuario_id = random.randint(1, 30)
+        usuario_id = random.randint(1, 76)
         acao = fake.sentence(nb_words=3)
         descricao = fake.text()
         query = "INSERT INTO logs (usuario_id, acao, descricao) VALUES (%s, %s, %s)"
@@ -236,7 +246,7 @@ def inserir_logs(qtd=20):
     cursor.close()
     connection.close()
 
-def inserir_pagamentos(qtd_registros=50):
+def inserir_pagamentos(qtd_registros=70):
     print("Inserindo registros de pagamentos...")
 
     # Conectar ao banco de dados
@@ -245,8 +255,8 @@ def inserir_pagamentos(qtd_registros=50):
 
     for _ in range(qtd_registros):
         # Aleatoriedade nos dados de pagamento
-        venda_id = random.randint(1, 30)  # Relacionando ao id da venda
-        valor_pago = round(random.uniform(50, 2000), 2)  # Valor pago
+        venda_id = random.randint(1, 80)  # Relacionando ao id da venda
+        valor_pago = round(random.uniform(80, 2000), 2)  # Valor pago
         metodo_pagamento = random.choice(["cartão de crédito", "dinheiro", "pix", "boleto"])  # Forma de pagamento
         data_pagamento = datetime.now() - timedelta(days=random.randint(1, 365))  # Data de pagamento aleatória
         status = random.choice(["pendente", "pago", "cancelado"])  # Status do pagamento
@@ -264,8 +274,6 @@ def inserir_pagamentos(qtd_registros=50):
     connection.close()
 
     print(f"{qtd_registros} registros de pagamentos inseridos com sucesso!")
-
-
 
 def main():
     inserir_usuarios()
